@@ -17,7 +17,7 @@ class Dlist {
 
   //MODIFIES: this
   //EFFECTS:  inserts v into the front of the list
-  // void insertFront(const T &datum);
+  void insertFront(const T &datum);
 
   //MODIFIES: this
   //EFFECTS:  inserts v into the back of the list
@@ -64,17 +64,15 @@ class Dlist {
  * Member function implementations here
  ***************************************/
 
- template <typename T>
- bool Dlist<T>::isEmpty() const{
+template <typename T>
+bool Dlist<T>::isEmpty() const{
   return !first;
- }
+}
 
- //  //MODIFIES: this
- //  //EFFECTS:  inserts v into the front of the list
- //  template <class T>
- //  void DList<T>::insertFront(const T &datum){
+template <typename T>
+void Dlist<T>::insertFront(const T &datum){
 
- //  }
+}
 
  //  //MODIFIES: this
  //  //EFFECTS:  inserts v into the back of the list
