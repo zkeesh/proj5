@@ -194,7 +194,7 @@ void Dlist<T>::print(){
  //  //EFFECTS:  removes the item at the front of the list
  template <typename T>
  T Dlist<T>::removeFront(){
-     cout << "calling remove front" << endl;
+     //cout << "calling remove front" << endl;
      
      if(isEmpty()){
          return 0;
@@ -309,7 +309,7 @@ Dlist<T>& Dlist<T>::operator= (const Dlist &l){
 
 template <typename T>
 Dlist<T>::~Dlist(){
-    cout << "Calling destructor" << endl;
+    //cout << "Calling destructor" << endl;
     removeAll();
 }                                  // dtor
 
