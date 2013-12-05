@@ -4,6 +4,8 @@
 #include <cctype>
 using namespace std;
 
+
+
 void handle_math(string op, Dlist<double> &stack){
     if(!stack.isEmpty()){
         double y = stack.removeFront();
@@ -17,6 +19,12 @@ void handle_math(string op, Dlist<double> &stack){
             }else if(op == "*"){
                 result = x * y;
             }else{
+                if(y == 0){
+                    stack.insertFront(y);
+                    stack.insertFront(x);
+                    cout << "Divide by zero\n";
+                    return;
+                }
                 result = x / y;
             }
             stack.insertFront(result);
@@ -96,31 +104,23 @@ void operate(string op, Dlist<double> &stack){
 
     if(op == "+" || op == "-" || op == "*" || op == "/"){
         handle_math(op, stack);
-    }
-
-    if(op == "n"){
+    }else if(op == "n"){
         negation(stack);
-    }
-
-    if(op == "d"){
+    }else if(op == "d"){
         duplication(stack);
-    }
-
-    if(op == "r"){
+    }else if(op == "r"){
         reversal(stack);
-    }
-
-    if(op == "p"){
+    }else if(op == "p"){
         print(stack);
-    }
-
-    if(op == "c"){
+    }else if(op == "c"){
         clear(stack);
+    }else if(op == "a"){
+        print_all(stack);
+    }else{
+        cout << "Bad input\n";
     }
 
-    if(op == "a"){
-        print_all(stack);
-    }
+
 
 
 
@@ -243,29 +243,16 @@ void operate(string op, Dlist<double> &stack){
 //   return 0;
 // }
 
-/*
-
-+
-d
-+
-p
-2
--
-p
-q
-
-*/
-
-
 
 
 int main() {
 
-    string input[] = {"q"};
+    //string input[] = {"2", "3", "4", "+", "*", "p", "+", "d", "+", "p", "2", "-", "p", "q"};
+    string input[] = {"3", "0", "/", "+", "p", "3", "+", "p"};
     Dlist<double> stack;
     string s;
     int i = 0;
-    while(i < 1){
+    while(i < 8){
         s = input[i];
         i++;
         if(isdigit(s[0])){
