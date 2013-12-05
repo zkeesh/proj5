@@ -4,8 +4,6 @@
 #include <cctype>
 using namespace std;
 
-#include <string>
-
 void handle_math(string op, Dlist<double> &stack){
     if(!stack.isEmpty()){
         double y = stack.removeFront();
@@ -55,21 +53,24 @@ void duplication(Dlist<double> &stack){
 void reversal(Dlist<double> &stack){
     if(!stack.isEmpty()){
         double x = stack.removeFront();
-
         if(!stack.isEmpty()){
             double y = stack.removeFront();
-
             stack.insertFront(x);
             stack.insertFront(y);
-
-
         }else{
             stack.insertFront(x);
             cout << "Not enough operands\n";
         }
+    }else{
+        cout << "Not enough operands\n";
+    }
+}
 
-
-
+void print(Dlist<double> &stack){
+    if(!stack.isEmpty()){
+        double x = stack.removeFront();
+        cout << x << endl;
+        stack.insertFront(x);
     }else{
         cout << "Not enough operands\n";
     }
@@ -92,6 +93,12 @@ void operate(string op, Dlist<double> &stack){
     if(op == "r"){
         reversal(stack);
     }
+
+    if(op == "p"){
+        print(stack);
+    }
+
+    
 
     // if(op == "n"){
     //     negate(stack);
@@ -230,7 +237,7 @@ q
 
 int main() {
 
-    string input[] = {"r", "3", "4", "5", "6", "r", "r"};
+    string input[] = {"2", "3", "+", "p", "4", "*", "p"};
     Dlist<double> stack;
     string s;
     int i = 0;
@@ -243,7 +250,7 @@ int main() {
         }else{
             operate(s, stack);
         }
-        stack.print();
+        //stack.print();
     }
 
 }
