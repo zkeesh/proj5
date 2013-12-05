@@ -82,6 +82,16 @@ void clear(Dlist<double> &stack){
     }
 }
 
+void print_all(Dlist<double> &stack){
+    if(!stack.isEmpty()){
+        Dlist<double> stack_copy(stack);
+        while(!stack_copy.isEmpty()){
+            cout << stack_copy.removeFront() << " ";
+        }
+    }
+    cout << " \n";
+}
+
 void operate(string op, Dlist<double> &stack){
 
     if(op == "+" || op == "-" || op == "*" || op == "/"){
@@ -106,6 +116,10 @@ void operate(string op, Dlist<double> &stack){
 
     if(op == "c"){
         clear(stack);
+    }
+
+    if(op == "a"){
+        print_all(stack);
     }
 
 
@@ -247,11 +261,11 @@ q
 
 int main() {
 
-    string input[] = {"2", "3", "+", "p", "4", "*", "p", "c"};
+    string input[] = {"a"};
     Dlist<double> stack;
     string s;
     int i = 0;
-    while(i < 8){
+    while(i < 1){
         s = input[i];
         i++;
         if(isdigit(s[0])){
@@ -260,7 +274,7 @@ int main() {
         }else{
             operate(s, stack);
         }
-        stack.print();
+        //stack.print();
     }
 
 }
