@@ -76,6 +76,12 @@ void print(Dlist<double> &stack){
     }
 }
 
+void clear(Dlist<double> &stack){
+    while(!stack.isEmpty()){
+        stack.removeFront();
+    }
+}
+
 void operate(string op, Dlist<double> &stack){
 
     if(op == "+" || op == "-" || op == "*" || op == "/"){
@@ -98,7 +104,11 @@ void operate(string op, Dlist<double> &stack){
         print(stack);
     }
 
-    
+    if(op == "c"){
+        clear(stack);
+    }
+
+
 
     // if(op == "n"){
     //     negate(stack);
@@ -237,11 +247,11 @@ q
 
 int main() {
 
-    string input[] = {"2", "3", "+", "p", "4", "*", "p"};
+    string input[] = {"2", "3", "+", "p", "4", "*", "p", "c"};
     Dlist<double> stack;
     string s;
     int i = 0;
-    while(i < 7){
+    while(i < 8){
         s = input[i];
         i++;
         if(isdigit(s[0])){
@@ -250,7 +260,7 @@ int main() {
         }else{
             operate(s, stack);
         }
-        //stack.print();
+        stack.print();
     }
 
 }
