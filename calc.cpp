@@ -261,7 +261,7 @@ q
 
 int main() {
 
-    string input[] = {"a"};
+    string input[] = {"q"};
     Dlist<double> stack;
     string s;
     int i = 0;
@@ -272,6 +272,9 @@ int main() {
             double number = atof(s.c_str());
             stack.insertFront(number);
         }else{
+            if(s == "q"){
+                break;
+            }
             operate(s, stack);
         }
         //stack.print();
