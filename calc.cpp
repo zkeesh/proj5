@@ -23,6 +23,7 @@ void handle_math(string op, Dlist<double> &stack){
             }
             stack.insertFront(result);
         }else{
+            stack.insertFront(y);
             cout << "Not enough operands\n";
         }
     }else{
@@ -30,24 +31,71 @@ void handle_math(string op, Dlist<double> &stack){
     }
 }
 
+void negation(Dlist<double> &stack){
+    if(!stack.isEmpty()){
+        double x = stack.removeFront();
+        double result = x * -1;
+        stack.insertFront(result);
+    }else{
+        cout << "Not enough operands\n";
+    }
+}
+
+void duplication(Dlist<double> &stack){
+    if(!stack.isEmpty()){
+        double x = stack.removeFront();
+        stack.insertFront(x);
+        stack.insertFront(x);
+        stack.insertFront(x);
+    }else{
+        cout << "Not enough operands\n";
+    }
+}
+
+void reversal(Dlist<double> &stack){
+    if(!stack.isEmpty()){
+        double x = stack.removeFront();
+
+        if(!stack.isEmpty()){
+            double y = stack.removeFront();
+
+            stack.insertFront(x);
+            stack.insertFront(y);
+
+
+        }else{
+            stack.insertFront(x);
+            cout << "Not enough operands\n";
+        }
 
 
 
+    }else{
+        cout << "Not enough operands\n";
+    }
+}
 
-
-
-
-
-/*
-This is a helper function that takes in an operation
-and a reference to the Dlist does the given operation
-or returns an error about incorrect inputs
-*/
 void operate(string op, Dlist<double> &stack){
 
+    if(op == "+" || op == "-" || op == "*" || op == "/"){
+        handle_math(op, stack);
+    }
 
-    handle_math(op, stack);
+    if(op == "n"){
+        negation(stack);
+    }
 
+    if(op == "d"){
+        duplication(stack);
+    }
+
+    if(op == "r"){
+        reversal(stack);
+    }
+
+    // if(op == "n"){
+    //     negate(stack);
+    // }
 
 
 //     double result;
@@ -182,11 +230,11 @@ q
 
 int main() {
 
-    string input[] = {"30", "10", "/", "10", "+"};
+    string input[] = {"r", "3", "4", "5", "6", "r", "r"};
     Dlist<double> stack;
     string s;
     int i = 0;
-    while(i < 5){
+    while(i < 7){
         s = input[i];
         i++;
         if(isdigit(s[0])){
