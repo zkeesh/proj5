@@ -119,13 +119,13 @@ void operate(string op, Dlist<double> &stack){
 }
 
 int main() {
-    string input[] = {"90", "34", "12", "33", "55", "66", "+", "*", "-", "+", "-", "p"};
+    //string input[] = {"90", "34", "12", "33", "55", "66", "+", "*", "-", "+", "-", "p"};
     Dlist<double> stack;
     string s;
-    int i = 0;
-    while(i < 12){
-        s = input[i];
-        i++;
+    //int i = 0;
+    while(cin >> s){
+        //s = input[i];
+        //i++;
         if(isdigit(s[0])){
             double number = atof(s.c_str());
             stack.insertFront(number);
@@ -137,4 +137,5 @@ int main() {
         }
         //stack.print();
     }
+    return 0;
 }
