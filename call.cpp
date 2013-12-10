@@ -102,12 +102,22 @@ int main(){
 
     int tick = 0;
 	int duration = 0;
+
+	int counter = 0;
+
+	while(!platinum.isEmpty() && !gold.isEmpty() && !silver.isEmpty() && !regular.isEmpty() &&
+		  counter < 4){
+
+    	Dlist<Caller*> copy_all_events(all_events);
+
+		process_calls(tick, copy_all_events, platinum, gold, silver, regular);
+
+		answer_calls(duration, tick, platinum, gold, silver, regular);
+
+		counter++;
+		cout << "counter: " << counter << endl;
+
+	}
    
-    Dlist<Caller*> copy_all_events(all_events);
-
-	process_calls(tick, copy_all_events, platinum, gold, silver, regular);
-
-	answer_calls(duration, tick, platinum, gold, silver, regular);
-
 	return 0;
 }
