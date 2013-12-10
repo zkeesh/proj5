@@ -84,8 +84,6 @@ void answer_calls(int & duration, Dlist<Caller*> & platinum, Dlist<Caller*> & go
         }else{
             cout << "there are no calls" << endl;
         }
-    }else{
-        duration--;
     }
 }
 
@@ -118,6 +116,10 @@ int main(){
 
         if(counter > num_lines && regular.isEmpty() && silver.isEmpty() && gold.isEmpty() && platinum.isEmpty()){
             break;
+        }
+
+        if(duration > 0){
+            duration--;
         }
 
         tick++;
