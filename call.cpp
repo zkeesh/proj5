@@ -31,11 +31,49 @@ void read_file(Dlist<Caller*> & all_events){
 	}
 }
 
+void process_calls(int tick, Dlist<Caller*> & copy_all_events, 
+				   Dlist<Caller*> & platinum, Dlist<Caller*> & gold,
+				   Dlist<Caller*> & silver, Dlist<Caller*> & regular){
+	//print out tick number
+	cout << "Starting tick #" << tick << "\n";
+	while(!copy_all_events.isEmpty()){
+		//get first element in queue
+        Caller *caller_ptr = copy_all_events.removeFront();
+        //if tick is equal to anyone's timestamp
+        if(caller_ptr->timestamp == tick){
+        	//insert into correct queue
+            if(caller_ptr->status == "platinum"){
+        		platinum.insertBack(caller_ptr);
+    		}else if(caller_ptr->status == "gold"){
+        		gold.insertBack(caller_ptr);
+    		}else if(caller_ptr->status == "silver"){
+        		silver.insertBack(caller_ptr);
+    		}else{
+        		regular.insertBack(caller_ptr);
+    		}
+    		//print out message about call
+            cout << "Call from ";
+            cout << caller_ptr->name << " a ";
+            cout << caller_ptr->status << " member \n";
+        }
+    }
+}
+
 int main(){
+
+	Dlist<Caller*> platinum;
+	Dlist<Caller*> gold;
+	Dlist<Caller*> silver;
+	Dlist<Caller*> regular;
 
 	Dlist<Caller*> all_events;
 	read_file(all_events);
 
-	return 0;
+    int tick = 0;
+    
+    Dlist<Caller*> copy_all_events(all_events);
 
+	process_calls(tick, copy_all_events, platinum, gold, silver, regular);
+
+	return 0;
 }
