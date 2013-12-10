@@ -37,6 +37,7 @@ void process_calls(int tick, Dlist<Caller*> & copy_all_events,
 				   Dlist<Caller*> & platinum, Dlist<Caller*> & gold,
 				   Dlist<Caller*> & silver, Dlist<Caller*> & regular){
 	while(!copy_all_events.isEmpty()){
+        bool isRegular = false;
 		//get first element in queue
         Caller *caller_ptr = copy_all_events.removeFront();
         //if tick is equal to anyone's timestamp
@@ -50,11 +51,17 @@ void process_calls(int tick, Dlist<Caller*> & copy_all_events,
         		silver.insertBack(caller_ptr);
     		}else{
         		regular.insertBack(caller_ptr);
+                isRegular = true;
     		}
     		//print out message about call
             cout << "Call from ";
             cout << caller_ptr->name << " a ";
-            cout << caller_ptr->status << " member \n";
+            if(isRegular){
+                cout << "regular";
+            }else{
+                cout << caller_ptr->status;
+            }
+                cout << " member \n";
         }
     }
 }
