@@ -11,7 +11,7 @@ struct Caller{
     int duration;
 };
 
-void read_file(Dlist<Caller*> & all_events){
+int read_file(Dlist<Caller*> & all_events){
 	//get number of lines in file
 	int num_lines;
 	cin >> num_lines;
@@ -29,6 +29,8 @@ void read_file(Dlist<Caller*> & all_events){
     	caller_ptr->duration = duration;
     	all_events.insertBack(caller_ptr); 
 	}
+
+	return num_lines;
 }
 
 void process_calls(int tick, Dlist<Caller*> & copy_all_events, 
@@ -98,15 +100,15 @@ int main(){
 	Dlist<Caller*> regular;
 
 	Dlist<Caller*> all_events;
-	read_file(all_events);
+	int num_lines = read_file(all_events);
+
+	cout << num_lines << endl;
 
     int tick = 0;
 	int duration = 0;
-
 	int counter = 0;
 
-	while(!platinum.isEmpty() && !gold.isEmpty() && !silver.isEmpty() && !regular.isEmpty() &&
-		  counter < 4){
+	while(true){
 
     	Dlist<Caller*> copy_all_events(all_events);
 
@@ -115,7 +117,11 @@ int main(){
 		answer_calls(duration, tick, platinum, gold, silver, regular);
 
 		counter++;
-		cout << "counter: " << counter << endl;
+		cout << counter << endl;
+
+        if(counter == num_lines && regular.isEmpty() && silver.isEmpty() && gold.isEmpty() && platinum.isEmpty()){
+            break;
+        }
 
 	}
    
