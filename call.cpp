@@ -11,11 +11,10 @@ struct Caller{
     int duration;
 };
 
-int main(){
+void read_file(Dlist<Caller*> & all_events){
+
 	int num_lines;
 	cin >> num_lines;
-
-	Dlist<Caller*> all_events;
 
 	for(int i = 0; i < num_lines; i++){
 		int timestamp;
@@ -35,8 +34,13 @@ int main(){
 
 	}
 
+}
 
-	cout << "hello";
+int main(){
+
+	Dlist<Caller*> all_events;
+	read_file(all_events);
+
 	return 0;
 
 }
