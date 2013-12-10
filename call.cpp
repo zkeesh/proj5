@@ -36,8 +36,6 @@ int read_file(Dlist<Caller*> & all_events){
 void process_calls(int tick, Dlist<Caller*> & copy_all_events, 
 				   Dlist<Caller*> & platinum, Dlist<Caller*> & gold,
 				   Dlist<Caller*> & silver, Dlist<Caller*> & regular){
-	//print out tick number
-	cout << "Starting tick #" << tick << "\n";
 	while(!copy_all_events.isEmpty()){
 		//get first element in queue
         Caller *caller_ptr = copy_all_events.removeFront();
@@ -87,7 +85,6 @@ void answer_calls(int & duration, Dlist<Caller*> & platinum, Dlist<Caller*> & go
             cout << "there are no calls" << endl;
         }
     }else{
-        //tick++;
         duration--;
     }
 }
@@ -109,6 +106,7 @@ int main(){
 	int counter = 0;
 
 	while(true){
+        cout << "Starting tick #" << tick << "\n";
 
     	Dlist<Caller*> copy_all_events(all_events);
 
@@ -117,7 +115,6 @@ int main(){
 		answer_calls(duration, platinum, gold, silver, regular);
 
 		counter++;
-		//cout << counter << endl;
 
         if(counter > num_lines && regular.isEmpty() && silver.isEmpty() && gold.isEmpty() && platinum.isEmpty()){
             break;
