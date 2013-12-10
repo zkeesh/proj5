@@ -102,6 +102,10 @@ int main(){
 	while(true){
         cout << "Starting tick #" << tick << "\n";
 
+        if(counter > num_lines && regular.isEmpty() && silver.isEmpty() && gold.isEmpty() && platinum.isEmpty()){
+            break;
+        }
+
     	Dlist<Caller*> copy_all_events(all_events);
 
 		process_calls(tick, copy_all_events, platinum, gold, silver, regular);
@@ -109,10 +113,6 @@ int main(){
 		answer_calls(duration, platinum, gold, silver, regular);
 
 		counter++;
-
-        if(counter > num_lines && regular.isEmpty() && silver.isEmpty() && gold.isEmpty() && platinum.isEmpty()){
-            break;
-        }
 
         if(duration > 0){
             duration--;
