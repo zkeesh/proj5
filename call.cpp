@@ -97,8 +97,6 @@ int main(){
 	Dlist<Caller*> all_events;
 	int num_lines = read_file(all_events);
 
-	cout << num_lines << endl;
-
     int tick = 0;
 	int duration = 0;
 	int counter = 0;
