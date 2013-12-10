@@ -61,7 +61,7 @@ void process_calls(int tick, Dlist<Caller*> & copy_all_events,
             }else{
                 cout << caller_ptr->status;
             }
-                cout << " member \n";
+                cout << " member\n";
         }
     }
 }
