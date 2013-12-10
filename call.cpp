@@ -61,7 +61,7 @@ void process_calls(int tick, Dlist<Caller*> & copy_all_events,
     }
 }
 
-void answer_calls(int & duration, int & tick, Dlist<Caller*> & platinum, Dlist<Caller*> & gold,
+void answer_calls(int & duration, Dlist<Caller*> & platinum, Dlist<Caller*> & gold,
 				  Dlist<Caller*> & silver, Dlist<Caller*> & regular){
 	//create caller ptr variable
     Caller *caller_ptr;
@@ -87,7 +87,7 @@ void answer_calls(int & duration, int & tick, Dlist<Caller*> & platinum, Dlist<C
             cout << "there are no calls" << endl;
         }
     }else{
-        tick++;
+        //tick++;
         duration--;
     }
 }
@@ -114,14 +114,16 @@ int main(){
 
 		process_calls(tick, copy_all_events, platinum, gold, silver, regular);
 
-		answer_calls(duration, tick, platinum, gold, silver, regular);
+		answer_calls(duration, platinum, gold, silver, regular);
 
 		counter++;
-		cout << counter << endl;
+		//cout << counter << endl;
 
         if(counter > num_lines && regular.isEmpty() && silver.isEmpty() && gold.isEmpty() && platinum.isEmpty()){
             break;
         }
+
+        tick++;
 
 	}
    
