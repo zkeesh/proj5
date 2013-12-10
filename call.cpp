@@ -77,12 +77,10 @@ void answer_calls(int & duration, Dlist<Caller*> & platinum, Dlist<Caller*> & go
         	caller_ptr = silver.removeFront();
             cout << "Answering call from " << caller_ptr->name << "\n";
             duration = caller_ptr->duration;
-        }else if(!regular.isEmpty()){
+        }else{
         	caller_ptr = regular.removeFront();
             cout << "Answering call from " << caller_ptr->name << "\n";
             duration = caller_ptr->duration;
-        }else{
-            cout << "there are no calls" << endl;
         }
     }
 }
