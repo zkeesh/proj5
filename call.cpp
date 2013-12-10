@@ -59,6 +59,37 @@ void process_calls(int tick, Dlist<Caller*> & copy_all_events,
     }
 }
 
+void answer_calls(int duration, int tick, Dlist<Caller*> & platinum, Dlist<Caller*> & gold,
+				  Dlist<Caller*> & silver, Dlist<Caller*> & regular){
+	//create caller ptr variable
+    Caller *caller_ptr;
+    //if not busy, answer a call
+    if(duration == 0){
+        if(!platinum.isEmpty()){
+        	caller_ptr = platinum.removeFront();
+            cout << "Answering call from " << caller_ptr->name << "\n";
+            //duration = caller_ptr->duration;
+        }else if(!gold.isEmpty()){
+        	caller_ptr = gold.removeFront();
+            cout << "Answering call from " << caller_ptr->name << "\n";
+            //duration = caller_ptr->duration;
+        }else if(!silver.isEmpty()){
+        	caller_ptr = silver.removeFront();
+            cout << "Answering call from " << caller_ptr->name << "\n";
+            //duration = caller_ptr->duration;
+        }else if(!regular.isEmpty()){
+        	caller_ptr = regular.removeFront();
+            cout << "Answering call from " << caller_ptr->name << "\n";
+            //duration = caller_ptr->duration;
+        }else{
+            cout << "there are no calls" << endl;
+        }
+    }else{
+        tick++;
+        duration--;
+    }
+}
+
 int main(){
 
 	Dlist<Caller*> platinum;
@@ -70,10 +101,13 @@ int main(){
 	read_file(all_events);
 
     int tick = 0;
-    
+	int duration = 0;
+   
     Dlist<Caller*> copy_all_events(all_events);
 
 	process_calls(tick, copy_all_events, platinum, gold, silver, regular);
+
+	answer_calls(duration, tick, platinum, gold, silver, regular);
 
 	return 0;
 }
